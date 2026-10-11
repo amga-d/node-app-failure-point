@@ -1,0 +1,24 @@
+apiVersion: apps/v1 
+kind: ReplicaSet
+
+metadata:
+  name: node-app
+  labels:
+    app: failure-point
+    tier: test
+
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: failure-point
+  template:
+    metadata:
+      labels:
+        app: failure-point
+    
+    spec: 
+      containers:
+      - name: node-app-test
+        image: 192.168.39.1:5000/node-app:v1
+
